@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { cormorant, neueHaas } from '@/lib/fonts';
+import { ThemeProvider } from '@/contexts/ThemeContext';
+import { Navigation } from '@/components/navigation/Navigation';
 import './globals.css';
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
   title: 'Eli & Fur',
@@ -16,7 +16,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>{children}</body>
+      <body className={`${cormorant.variable} ${neueHaas.variable} antialiased`}>
+        <ThemeProvider>
+          <Navigation />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
